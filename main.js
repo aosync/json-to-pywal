@@ -2,10 +2,12 @@ $(function () {
   $('#btn').click(function () {
     let content = $('#input').val();
     let input;
-    let output;
+    let pywal;
+    let bootique = '';
     try {
       input = JSON.parse(content);
-      output = {
+      // if ()
+      pywal = {
         special: {
           background: input.background,
           foreground: input.foreground,
@@ -14,13 +16,21 @@ $(function () {
         colors: {},
       };
       for (let i = 0; i < input.color.length; i++) {
-        output.colors['color' + i] = input.color[i];
+        pywal.colors['color' + i] = input.color[i];
+      }
+      bootique += `background: ${input.background}\n`;
+      bootique += `foreground: ${input.foreground}\n`;
+      bootique += `cursor: ${input.color[7]}\n`;
+      for (let i = 0; i < input.color.length; i++) {
+        bootique += `color${i}: ${input.color[i]}\n`;
       }
     }
     catch (e) {
-      $('#output').val('Please enter a valid color JSON :(');
+      $('#pywal').val('Please enter a valid color JSON :(');
+      $('#bootique').val('Please enter a valid color JSON :(');
       return;
     }
-    $('#output').val(JSON.stringify(output));
+    $('#pywal').val(JSON.stringify(pywal));
+    $('#bootique').val(bootique);
   });
 });
